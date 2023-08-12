@@ -2,8 +2,7 @@ name: Publish
 on:
   push:
     branches:
-      - 'master'
-      - 'main'
+      - 'deployment-staging'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
