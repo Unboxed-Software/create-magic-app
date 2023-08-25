@@ -1,7 +1,7 @@
 import React from 'react';
 import WalletMethods from './cards/WalletMethodsCard';
 import SendTransaction from './cards/SendTransactionCard';
-import Spacer from '@/components/ui/Spacer';
+import Spacer from '@/components/ui/spacer';
 import { LoginProps } from '@/utils/types';
 import UserInfo from './cards/UserInfoCard';
 import DevLinks from './DevLinks';

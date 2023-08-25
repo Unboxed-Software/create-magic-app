@@ -22,7 +22,7 @@ const MagicDashboardRedirect = () => {
           Go to Magic Dashboard
         </FormButton>
       </Card>
-      <div style={{ textAlign: 'center' }}>
+      <div className="text-center">
         <button className="connect-button" onClick={onClick}>
           Go to Dashboard
         </button>
