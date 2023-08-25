@@ -1,7 +1,7 @@
 import React from 'react';
 import { Template, Zombi, mergePrompts } from 'zombi';
-import { createScaffold } from 'core/utils/scaffold-helpers';
-import { BlockchainNetworkPrompt, NpmClientPrompt, PublishableApiKeyPrompt } from 'scaffolds/prompts';
+import { createScaffold } from '../../core/utils/scaffold-helpers';
+import { BlockchainNetworkPrompt, NpmClientPrompt, PublishableApiKeyPrompt } from '../prompts';
 
 type NextUniversalWalletData = NpmClientPrompt.Data & PublishableApiKeyPrompt.Data & BlockchainNetworkPrompt.Data;
 

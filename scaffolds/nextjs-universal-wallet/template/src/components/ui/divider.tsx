@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Divider = () => {
-	return <div className='divider' />
-}
+  return <div className="mx-0 my-[15px] border-b-[#ededf3] border-b border-solid" />;
+};
 
-export default Divider
+export default Divider;

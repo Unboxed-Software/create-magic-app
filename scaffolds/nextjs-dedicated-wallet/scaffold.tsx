@@ -1,13 +1,13 @@
 import React from 'react';
 import { Template, Zombi, mergePrompts } from 'zombi';
-import { createScaffold } from 'core/utils/scaffold-helpers';
+import { createScaffold } from '../../core/utils/scaffold-helpers';
 import {
   AuthTypePrompt,
   BlockchainNetworkPrompt,
   NpmClientPrompt,
   PublishableApiKeyPrompt,
   SecretApiKeyPrompt,
-} from 'scaffolds/prompts';
+} from '../prompts';
 
 type NextDedicatedWalletData = NpmClientPrompt.Data &
   PublishableApiKeyPrompt.Data &

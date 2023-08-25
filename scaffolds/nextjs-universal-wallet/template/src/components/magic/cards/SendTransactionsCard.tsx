@@ -1,14 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import Divider from '../../ui/Divider';
+import Divider from '../../ui/divider';
 import FormButton from '../../ui/FormButton';
-import Link from 'public/link.svg';
-import Spacer from '../../ui/Spacer';
+import Spacer from '../../ui/spacer';
 import FormInput from '../../ui/FormInput';
-import Card from '../../ui/Card';
+import Card from '../../ui/card';
 import CardHeader from '../../ui/CardHeader';
 import TransactionHistory from '../../ui/TransactionHistory';
-import ErrorText from '../../ui/Error';
+import ErrorText from '../../ui/error';
 import { useMagicContext } from '@/components/magic/MagicProvider';
 import { getFaucetUrl, getNetworkToken } from '@/utils/networks';
 

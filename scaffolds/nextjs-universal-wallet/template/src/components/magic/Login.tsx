@@ -2,8 +2,7 @@ import React, { useState, useCallback } from 'react';
 import AppHeader from '../ui/AppHeader';
 import Links from './Links';
 import ConnectButton from '../ui/ConnectButton';
-import Spacer from '../ui/Spacer';
-import LoginPageBackground from 'public/login.svg';
+import Spacer from '../ui/spacer';
 import { useMagicContext } from '@/components/magic/MagicProvider';
 
 interface Props {
@@ -30,12 +29,7 @@ const Login = ({ setAccount }: Props) => {
   }, [magic, setAccount]);
 
   return (
-    <div
-      className="login-page"
-      style={{
-        backgroundImage: `url(${LoginPageBackground})`,
-      }}
-    >
+    <div className={`flex flex-col items-center min-h-screen bg-['100%_auto'] bg-[url('/login.svg')]`}>
       <AppHeader />
       <Spacer size={32} />
       <Spacer size={20} />

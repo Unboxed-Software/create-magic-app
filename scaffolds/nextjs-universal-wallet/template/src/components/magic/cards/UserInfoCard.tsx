@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import Divider from '../../ui/Divider';
+import Divider from '../../ui/divider';
 import Loading from 'public/loading.svg';
 import CardLabel from '../../ui/CardLabel';
-import Card from '../../ui/Card';
+import Card from '../../ui/card';
 import CardHeader from '../../ui/CardHeader';
 import { useMagicContext } from '@/components/magic/MagicProvider';
 import { getNetworkName, getNetworkToken } from '@/utils/networks';
@@ -71,28 +71,29 @@ const UserInfo = ({ setAccount }: Props) => {
     <Card>
       <CardHeader id="wallet">Wallet</CardHeader>
       <CardLabel leftHeader="Status" rightAction={<div onClick={disconnect}>Disconnect</div>} isDisconnect />
-      <div className="flex-row">
-        <div className="green-dot" />
-        <div className="connected">Connected to {getNetworkName()}</div>
+      <div className="flex items-center">
+        <div className="h-1.5 w-1.5 bg-[#00cc8f] mr-2.5 rounded-[50%]" />
+        <div className="text-base mx-0 my-[5px]">Connected to {getNetworkName()}</div>
       </div>
       <Divider />
       <CardLabel leftHeader="Address" rightAction={<div onClick={copy}>{copied}</div>} />
-      <div className="code">{publicAddress}</div>
+      <div className="text-base text-left p-2.5 rounded-[10px] font-[monospace] bg-[#f8f8fa] break-words">
+        {publicAddress}
+      </div>
       <Divider />
       <CardLabel
-        style={{ height: '20px' }}
         leftHeader="Balance"
         rightAction={
           isRefreshing ? (
-            <div className="loading-container">
-              <Image className="loading" alt="loading" src={Loading} />
+            <div className="w-[50px] text-center flex items-center justify-center cursor-default">
+              <Image className="animate-spin cursor-default" alt="loading" src={Loading} />
             </div>
           ) : (
             <div onClick={refresh}>Refresh</div>
           )
         }
       />
-      <div className="code">
+      <div className="text-base text-left p-2.5 rounded-[10px] font-[monospace] bg-[#f8f8fa] break-words">
         {balance.substring(0, 7)} {tokenSymbol}
       </div>
     </Card>
