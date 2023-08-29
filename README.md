@@ -1,5 +1,5 @@
 # 🪄 `make-magic`
-
+// comment for new commit
 > A tool for quickly scaffolding an app with Magic baked-in!
 
 <p align="center">
