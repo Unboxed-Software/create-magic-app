@@ -38,4 +38,4 @@ jobs:
         run: yarn run build
 
       - name: Create Release
-        run: yarn auto shipit -v
+        run: yarn auto shipit -v --base-branch unboxed-deployment
