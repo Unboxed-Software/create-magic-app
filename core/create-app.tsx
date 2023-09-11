@@ -20,10 +20,20 @@ import { printWarning } from './utils/errors-warnings';
 import { parseFlags } from './flags';
 import { addShutdownTask } from './utils/shutdown';
 import { SharedAnalytics } from './analytics';
+import {
+  BlockchainNetworkPrompt,
+  ConfigurationPrompt,
+  ProductPrompt,
+  PublishableApiKeyPrompt,
+} from 'scaffolds/prompts';
 
 const { Select, Input } = require('enquirer');
 
-export interface CreateMagicAppData {
+export interface CreateMagicAppData
+  extends BlockchainNetworkPrompt.Data,
+    PublishableApiKeyPrompt.Data,
+    ProductPrompt.Data,
+    ConfigurationPrompt.Data {
   /**
    * The `make-magic` project branch to source templates from.
    */
@@ -57,7 +67,6 @@ export async function createApp(config: CreateMagicAppConfig) {
 
   const isProgrammaticFlow = !!config.data;
   const destinationRoot = process.cwd();
-  let network = '';
 
   const availableScaffolds = fs
     .readdirSync(resolveToDist('scaffolds'))
@@ -87,9 +96,9 @@ export async function createApp(config: CreateMagicAppConfig) {
     config.projectName = projectName;
   }
 
-  let quickstart = false;
-  if (!config.template) {
-    const configuration = await new Select({
+  let chain = '';
+  if (!config.configuration && !config.product && !config.network?.includes('solana')) {
+    config.configuration = await new Select({
       name: 'configuration',
       message: 'Select a configuration to start with:',
       choices: [
@@ -97,13 +106,15 @@ export async function createApp(config: CreateMagicAppConfig) {
         { name: 'custom', message: 'Custom Setup (Choose product, network, etc.)' },
       ],
     }).run();
-
-    if (configuration === 'quickstart') {
-      config.template = 'nextjs-universal-wallet';
-      isChosenTemplateValid = true;
-      quickstart = true;
-    } else {
-      const chain = await new Select({
+  }
+  if (config.configuration === 'quickstart') {
+    config.template = 'nextjs-universal-wallet';
+    config.product = 'universal';
+    isChosenTemplateValid = true;
+  } else {
+    config.configuration = 'custom';
+    if (!config.network) {
+      chain = await new Select({
         name: 'chain',
         message: 'Which blockchain do you want to use?',
         choices: [
@@ -114,24 +125,21 @@ export async function createApp(config: CreateMagicAppConfig) {
       }).run();
 
       if (chain === 'solana') {
-        network = await new Select({
+        config.network = await new Select({
           name: 'network',
           message: 'Which network would you like to use?',
-          hint: 'We recommend starting with a test network',
+          hint: 'We recommend starting with a testnet.',
           choices: [
             { name: 'solana-mainnet', message: 'Mainnet' },
             { name: 'solana-devnet', message: 'Devnet' },
           ],
         }).run();
-
-        config.template = 'nextjs-solana-dedicated-wallet';
-        isChosenTemplateValid = true;
       } else {
         if (chain === 'flow') {
-          network = await new Select({
+          config.network = await new Select({
             name: 'network',
             message: 'Which network would you like to use?',
-            hint: 'We recommend starting with a test network',
+            hint: 'We recommend starting with a testnet.',
             choices: [
               { name: 'flow-mainnet', message: 'Mainnet' },
               { name: 'flow-testnet', message: 'Testnet' },
@@ -140,10 +148,10 @@ export async function createApp(config: CreateMagicAppConfig) {
         }
 
         if (chain == 'evm') {
-          network = await new Select({
+          config.network = await new Select({
             name: 'network',
-            message: 'Which network would like to use?',
-            hint: 'We recommend starting with a test network',
+            message: 'Which network would you like to use?',
+            hint: 'We recommend starting with a testnet.',
             choices: [
               { name: 'ethereum', message: 'Ethereum (Mainnet)' },
               { name: 'ethereum-goerli', message: 'Ethereum (Goerli Testnet)' },
@@ -152,34 +160,41 @@ export async function createApp(config: CreateMagicAppConfig) {
             ],
           }).run();
         }
-
-        const product = await new Select({
-          name: 'product',
-          message: 'Choose your wallet type',
-          choices: [
-            { name: 'universal', message: 'Universal' },
-            { name: 'dedicated', message: 'Dedicated' },
-          ],
-        }).run();
-
-        if (product === 'universal') {
-          if (chain === 'flow') {
-            config.template = 'nextjs-flow-universal-wallet';
-          } else {
-            config.template = 'nextjs-universal-wallet';
-          }
-        } else {
-          if (chain === 'flow') {
-            config.template = 'nextjs-flow-dedicated-wallet';
-          } else {
-            config.template = 'nextjs-dedicated-wallet';
-          }
-        }
-        isChosenTemplateValid = true;
       }
+    } else {
+      chain = config.network.split('-')[0];
+    }
+
+    if (!config.product && chain !== 'solana') {
+      config.product = await new Select({
+        name: 'product',
+        message: 'Choose your wallet type',
+        choices: [
+          { name: 'universal', message: 'Universal' },
+          { name: 'dedicated', message: 'Dedicated' },
+        ],
+      }).run();
+    }
+    if (chain == 'solana') {
+      config.template = 'nextjs-solana-dedicated-wallet';
+      isChosenTemplateValid = true;
+    } else {
+      if (config.product === 'universal') {
+        if (chain === 'flow') {
+          config.template = 'nextjs-flow-universal-wallet';
+        } else {
+          config.template = 'nextjs-universal-wallet';
+        }
+      } else {
+        if (chain === 'flow') {
+          config.template = 'nextjs-flow-dedicated-wallet';
+        } else {
+          config.template = 'nextjs-dedicated-wallet';
+        }
+      }
+      isChosenTemplateValid = true;
     }
   }
-
   const template = (
     <Zombi<CreateMagicAppData>
       name="create-magic-app"
@@ -189,8 +204,11 @@ export async function createApp(config: CreateMagicAppConfig) {
         branch: config?.branch ?? 'master',
         projectName: config?.projectName,
         template: isChosenTemplateValid ? config.template : undefined,
-        network: quickstart ? 'polygon-mumbai' : network.length > 0 ? network : undefined,
+        network: config.configuration === 'quickstart' ? 'polygon-mumbai' : config.network,
         npmClient: 'npm',
+        publishableApiKey: config.publishableApiKey,
+        product: config.product,
+        configuration: config.configuration,
       })}
       prompts={[
         {

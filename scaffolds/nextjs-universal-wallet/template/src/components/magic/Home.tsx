@@ -6,19 +6,13 @@ import WalletMethods from './cards/WalletMethodsCard';
 import SendTransaction from './cards/SendTransactionsCard';
 import Links from './Links';
 import Spacer from '../ui/Spacer';
-import HomePageBackground from 'public/main.svg';
 interface Props {
   setAccount: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export default function Home({ setAccount }: Props) {
   return (
-    <div
-      className="home-page"
-      style={{
-        backgroundImage: `url(${HomePageBackground})`,
-      }}
-    >
+    <div className="home-page">
       <AppHeader />
       <Spacer size={32} />
       <Links />
