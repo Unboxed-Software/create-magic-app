@@ -1,5 +1,5 @@
 {
-  "name": "make-magic",
+  "name": "@unboxed-software/make-magic-staging",
   "version": "4.2.2",
   "description": "A tool for quickly scaffolding an app with Magic authentication baked-in!",
   "repository": "magiclabs/create-magic-app",
