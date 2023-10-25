@@ -19,6 +19,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "intermediate files"
+          git push --set-upstream origin feat/96-env-variable-for-branch
+
       - name: Create .env
         run: |
           echo DEFAULT_BRANCH=staging >> .env
