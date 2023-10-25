@@ -61,8 +61,6 @@ function sayHello() {
 
   sayHello();
 
-  console.log('current branch env: ' + process.env.DEFAULT_BRANCH);
-
   if (collectUsageData && config?.id) {
     SharedAnalytics.identifyUser(config.id);
   }
