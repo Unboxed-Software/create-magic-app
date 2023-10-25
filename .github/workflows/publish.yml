@@ -19,6 +19,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Create .env
+        run: |
+          echo DEFAULT_BRANCH=staging >> .env
+
       - name: commit
         run: |
           git config --global user.email "kulkarniaditya1997@gmail.com"
@@ -27,10 +31,6 @@ jobs:
           git add .
           git commit -m "intermediate files"
           git push --set-upstream origin feat/96-env-variable-for-branch
-
-      - name: Create .env
-        run: |
-          echo DEFAULT_BRANCH=staging >> .env
 
       - name: Prepare repository
         run: git fetch --unshallow --tags
