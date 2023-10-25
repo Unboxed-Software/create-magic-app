@@ -19,10 +19,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Create .env
-      #   run: |
-      #     echo DEFAULT_BRANCH=staging >> .env
-
       - name: Prepare repository
         run: git fetch --unshallow --tags
 
