@@ -12,6 +12,7 @@ import { SharedAnalytics } from './analytics';
 import { modifyUsageConsent, initializeUsageConfigIfneeded } from './utils/usagePermissions';
 import { loadConfig } from './config';
 import suppressWarnings from './utils/suppress-experimental-warnings';
+require('dotenv').config();
 
 function sayHello() {
   console.log(chalk`\n
