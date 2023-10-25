@@ -23,15 +23,6 @@ jobs:
         run: |
           echo DEFAULT_BRANCH=staging >> .env
 
-      - name: commit
-        run: |
-          git config --global user.email "kulkarniaditya1997@gmail.com"
-          git config --global user.name "Aditya Kulkarni"
-          # Stage the file, commit and push
-          git add .
-          git commit -m "intermediate files"
-          git push --set-upstream origin feat/96-env-variable-for-branch
-
       - name: Prepare repository
         run: git fetch --unshallow --tags
 
@@ -45,6 +36,15 @@ jobs:
         run: |
           yarn -v
           yarn install --immutable
+
+      - name: commit
+        run: |
+          git config --global user.email "kulkarniaditya1997@gmail.com"
+          git config --global user.name "Aditya Kulkarni"
+          # Stage the file, commit and push
+          git add .
+          git commit -m "intermediate files"
+          git push --set-upstream origin feat/96-env-variable-for-branch
 
       - name: Build
         run: yarn run build
