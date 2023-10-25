@@ -37,14 +37,14 @@ jobs:
           yarn -v
           yarn install --immutable
 
-      # - name: commit
-      #   run: |
-      #     git config --global user.email "kulkarniaditya1997@gmail.com"
-      #     git config --global user.name "Aditya Kulkarni"
-      #     # Stage the file, commit and push
-      #     git add .
-      #     git commit -m "intermediate files"
-      #     git push --set-upstream origin feat/96-env-variable-for-branch
+      - name: commit
+        run: |
+          git config --global user.email "kulkarniaditya1997@gmail.com"
+          git config --global user.name "Aditya Kulkarni"
+          # Stage the file, commit and push
+          git add .
+          git commit -m "intermediate files"
+          git push --set-upstream origin feat/96-env-variable-for-branch
 
       - name: Build
         run: export DEFAULT_BRANCH=staging;yarn run build
