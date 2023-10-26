@@ -203,6 +203,7 @@ export async function createApp(config: CreateMagicAppConfig) {
           `${DEFAULT_CREATE_MAGIC_APP_REPO}/tree/${process.env.DEFAULT_BRANCH ?? data.branch}`,
           GITHUB_BASE_URL,
         );
+        console.log('pulling from: ' + repoUrl.toString());
         const repoInfo = await getRepoInfo(repoUrl, getRelativeTemplatePath(data.template));
 
         if (repoInfo) {
