@@ -1,3 +1,38 @@
+# v3.2.3 (Thu Oct 26 2023)
+
+#### 🐛 Bug Fix
+
+- Staging [#40](https://github.com/Unboxed-Software/create-magic-app/pull/40) ([@AdityaKulkarni](https://github.com/AdityaKulkarni))
+- Feat/96 env variable for branch [#39](https://github.com/Unboxed-Software/create-magic-app/pull/39) ([@AdityaKulkarni](https://github.com/AdityaKulkarni))
+- UI Updates for dedicated template [#38](https://github.com/Unboxed-Software/create-magic-app/pull/38) ([@AdityaKulkarni](https://github.com/AdityaKulkarni) [@jamesrp13](https://github.com/jamesrp13))
+- Updated quickstart configuration to use dedicated wallet with Email OTP [#37](https://github.com/Unboxed-Software/create-magic-app/pull/37) ([@AdityaKulkarni](https://github.com/AdityaKulkarni))
+- Usage analytics enabled by default. Added a flag to opt out [#36](https://github.com/Unboxed-Software/create-magic-app/pull/36) ([@AdityaKulkarni](https://github.com/AdityaKulkarni))
+- Fixed network flag not getting parsed by adding it to global flag opt… [#35](https://github.com/Unboxed-Software/create-magic-app/pull/35) ([@AdityaKulkarni](https://github.com/AdityaKulkarni))
+
+#### ⚠️ Pushed to `master`
+
+- v4.4.1 ([@jamesrp13](https://github.com/jamesrp13))
+- Remove universal from prompts ([@jamesrp13](https://github.com/jamesrp13))
+- Update version to 4.4.0 ([@jamesrp13](https://github.com/jamesrp13))
+- Update quickstart prompt ([@jamesrp13](https://github.com/jamesrp13))
+- Merge branch 'feat/47-cli-template-ui-updates' ([@jamesrp13](https://github.com/jamesrp13))
+- UI updates for Solana dedicated wallet ([@jamesrp13](https://github.com/jamesrp13))
+- UI updates for flow dedicated template ([@jamesrp13](https://github.com/jamesrp13))
+- Update CSS for login button on Dedicated template ([@jamesrp13](https://github.com/jamesrp13))
+- Update changelog and version ([@jamesrp13](https://github.com/jamesrp13))
+- Flips Dedicated/Universal order on wallet prompt ([@jamesrp13](https://github.com/jamesrp13))
+- Add github CI for staging env ([@jamesrp13](https://github.com/jamesrp13))
+- Merge remote-tracking branch 'upstream/master' into fix/v4.2.2 ([@jamesrp13](https://github.com/jamesrp13))
+- Merge remote-tracking branch 'upstream/master' into fix/rename-auth-flag ([@jamesrp13](https://github.com/jamesrp13))
+- Fix data not being provided to zombi ([@jamesrp13](https://github.com/jamesrp13))
+
+#### Authors: 2
+
+- Aditya Kulkarni ([@AdityaKulkarni](https://github.com/AdityaKulkarni))
+- James ([@jamesrp13](https://github.com/jamesrp13))
+
+---
+
 # v4.4.1 (Wed Sep 27 2023)
 
 #### 🚀 Enhancement
