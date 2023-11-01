@@ -20,7 +20,8 @@
     "test": "echo \"No unit tests... yet :(\" && exit 0",
     "postinstall": "husky install && ./scripts/ncc.ts",
     "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "postpublish": "pinst --enable",
+    "nodemon": "nodemon"
   },
   "devDependencies": {
     "@ikscodes/eslint-config": "^7.0.2",
