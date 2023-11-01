@@ -34,6 +34,8 @@ function sayHello() {
 
   useGracefulShutdown();
 
+  console.log('default branch: ' + process.env.DEFAULT_BRANCH);
+
   const { version, help, projectName, template, branch, network, shareUsageData } = await parseFlags(globalOptions);
   const collectUsageData = await initializeUsageConfigIfneeded();
   const config = loadConfig();

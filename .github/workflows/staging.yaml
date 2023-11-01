@@ -34,7 +34,7 @@ jobs:
           yarn install --immutable
 
       - name: Build
-        run: export DEFAULT_BRANCH=staging;yarn run build
+        run: npm run nodemon
 
       - name: Create Release
         run: yarn auto shipit -v
