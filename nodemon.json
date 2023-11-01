@@ -2,7 +2,7 @@
   "watch": ["core", "scaffolds", "scripts"],
   "ext": ".js, .ts, .json",
   "ignore": ["node_modules"],
-  "exec": "yarn clean && tsc && tsc-alias && copyfiles \"compiled/*/+(LICENSE|package.json)\" dist && node bin.js",
+  "exec": "yarn clean && tsc && tsc-alias && copyfiles \"compiled/*/+(LICENSE|package.json)\" dist",
   "env": {
     "DEFAULT_BRANCH": "staging"
   }
